@@ -1,0 +1,43 @@
+This repository contains the golang code for the server.
+
+The server has 2 priorities:
+	1) Facilitating API calls
+	2) Running scheduled tasks
+
+Auth Steps:
+	1) User goes to login page
+	2) User logs in via OAuth (no permissions)
+	3) User requests JWT, submitting an authorization token
+	4) If a "CharacterOwner" entry does not exist, create it.
+		* CharacterOwnerHash is the key, and should be used for all identification.
+		* http://eveonline-third-party-documentation.readthedocs.io/en/latest/sso/obtaincharacterid.html
+	5) Account creation takes place if neccessary
+		* Option to log into another character
+Account -> many -> Characters
+
+JWT Structure:
+	{
+		UID: int //Char ID {Internal NOT EVE}
+		CID: int //Corp ID
+		AID: int //Alliance ID
+		USR: string // Primary Character Name
+		AR: int //Admin Rank (0-9) 9 being super admin.
+		BR: int // Buerocratic Rank 1 (new) 2(member) 3(officer) 4(director) 5(CEO)
+		FR: int // Fleet Rank 1 (linesman) 2(JrFC) 3(FC) 4(SrFC) 5(Skymarshal)
+		ROL: int[] //List of roles.
+		PEM: int[] //List of permissions. These be API endpoints the user can hit
+		EXP: int //Expiration (every 15 minutes these need to be renewed)
+	}
+	
+
+	//Secret changes every time the redis server is wiped, so it should be cleared when the new permissions are added.	
+
+	The signature acts as the authorization token for secure endpoints, returning a new token to store.
+
+
+int
+
+
+
+
+

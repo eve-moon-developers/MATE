@@ -1,0 +1,91 @@
+API Mirrors Web, with each module handling various sub-sections
+
+API is seperate port tho, so that needs to be handled via CORS nicely.
+
+---
+
+FAQ:
+Q) Can I charge people real life money for my application?
+A) No.
+Q) Can I charge people ISK (the in-game currency) for access to my application?
+A) Yes
+Q) Can I generate revenue via ads in my application?
+A) Yes, however you must follow CCP’s guidelines for monetization of videos
+Q) Am I allowed to collect donations from users of my application? A) Yes, as long as they are purely voluntary. “Donations” may not be mandatory, and you cannot require a donation to unlock premium access or special items.
+Q) What are the different URLs for Sisi and TQ?
+A) You can find a quick reference to these in the references section of the documentation.
+
+---
+
+Minimum Trial Candidate: 
+    - Auth
+        - OAuth Login
+        - Alt Tie In
+        - ESI Queries
+        - Setup and Config Saving
+    - Client
+        - Home Page
+        - Login Page
+    - HR
+        - User / Role / Permission management
+
+---
+
+Minimum Release Features:
+    - Auth
+        - OAuth Login
+        - Alt Tie In
+        - ESI Queries
+        - Setup and Config Saving
+    - Client
+        - Home Page
+        - Login
+        - Public Info
+    - External Communication Integration
+        - Discord
+        - TS3
+        - Eve Mail
+        - News / Blogs / Forums / Wiki
+            - For home page Integration
+            - Soon after release, if not with release
+    - Fleet tracking
+        - Fleet Scheduling
+        - Timers
+        - View Upcoming Fleets
+        - Member Participation Tracking
+        - Automatic Discord pings
+    - Combat tracking
+        - Kills and Losses w/ Value Estimate
+    - SRP
+        - Automate tracking
+        - On death during sanctioned fleet, send mail to player with link to submit srp request if desired.
+    - Doctrine Ship Management
+    - HR
+        - User / Role / Permission management
+        - Blues
+        - Need to be able to parse evemail applications
+        - Store notes on members
+        - Report member participation and contribution
+        - Track suspicious communications or investments
+        - Replace or integrate jackknife *eventually*
+            - Mails
+            - Contacts
+            - Wallet History
+            - Pretty much everything
+        - Emergency SMS Pushing via AWS?
+    
+---
+
+Essential Modules: 
+    core - Starts up the server
+    auth - Handles permissions
+    storage - Handles configuration and storage (config, redis, psql)
+    client - Handles the public web pages, user management dashboard, ect.
+    server - Handles task scheduling and thread pooling
+
+Expansion Modules (see Above):
+    hr - User / Group / Permission Management
+    comms - Integration with external services
+    fleet - Handles fleet tracking
+
+    

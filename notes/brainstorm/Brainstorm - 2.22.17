@@ -1,0 +1,53 @@
+Boot up sequence is something like:
+    mate-app -> mate-core
+    mate-core -> mate-config
+    mate-core -> mate-auth
+    mate-core reads enabled-modules
+    mate-core boots each modules
+
+Mate Core has 4 ports running, each which have a subdomain pointed at them via nginx.
+    -public - This is standard domain, and contains the public websites of the alliance.
+    -secure - Members and allies only.
+    -admin - Admins only.
+    -API - API that ties everything together.
+
+Accessing secure and admin require a valid auth token, but the token doesn't expire.
+A cold visit to the site with a token should force the token to expire.
+The API has 4 levels of access:
+    * public - No valid token required. (Killboards, blogs)
+    * private - Valid token required, but does not expire on use.
+    * secure - Valid token required, expires on use.
+    * admin - Valid token required, expires on use. 
+
+Each module supplies mate-core with a list of endpoints and files, as well as details about each. Mate then sets up the server.
+
+Modules should be of the structure:
+    index.js        //Should minimally supply all functionality of the API.
+    config.js
+    client          //Client interface files.
+        src
+        style
+        html
+        misc
+        assets.js
+    admin           //Admin interface files.
+        src
+        style
+        html
+        misc
+        assets.js
+    api
+        routes.js
+                    //File structure mimicing endpoints. One endpoint per file.
+                    //Endpoints must match the mate-module endpoint definition.
+                    //API should do mimimal work here, rather just check arguments.
+    server
+                    //File structure can be however.
+                    //Most of work from API and elsewhere should be done here.
+    maint
+        sql - Each module has a seperate scheme.
+            versions
+            patches
+        scripts
+            -For anything fancy
+
