@@ -17,6 +17,7 @@ function Starfield() {
 	this.reset = false;
 	this.fade = 100;
 	this.resetTimeout = null;
+	this.gradient = null;
 }
 
 //	The main function - initialises the starfield.
@@ -28,14 +29,6 @@ Starfield.prototype.initialise = function (div) {
 	self.width = window.innerWidth;
 	self.height = window.innerHeight;
 
-	window.onresize = function (event) {
-		self.width = window.innerWidth;
-		self.height = window.innerHeight;
-		self.canvas.width = self.width;
-		self.canvas.height = self.height;
-		self.draw();
-	}
-
 	//	Create the canvas.
 	var canvas = document.createElement('canvas');
 	div.appendChild(canvas);
@@ -45,6 +38,20 @@ Starfield.prototype.initialise = function (div) {
 
 	//Reset the stars
 	this.stars = Math.round((this.canvas.width * this.canvas.height) / 20000);
+
+	//Set the gradient
+	var ctx = this.canvas.getContext("2d");
+	var radius = Math.max(this.width, this.height);
+	this.gradient = ctx.createRadialGradient(this.width / 2, this.height, radius, this.width / 2, this.height, 0);
+	this.gradient.addColorStop(0, "#1b2735");
+	this.gradient.addColorStop(1, "#090a0f");
+
+	ctx.fillStyle = this.gradient;
+	ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+	this.gradient = ctx.createRadialGradient(this.width / 2, this.height, radius, this.width / 2, this.height, 0);
+	this.gradient.addColorStop(0, "rgba(27, 39, 53, 0.05)");
+	this.gradient.addColorStop(1, "rgba(9, 10, 15, 0.05)");
 };
 
 Starfield.prototype.delayRestart = function () {
@@ -148,7 +155,8 @@ Starfield.prototype.draw = function () {
 	var ctx = this.canvas.getContext("2d");
 
 	//	Draw the background.
-	ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+	ctx.fillStyle = this.gradient;
+	ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
 	//	Draw stars.
 	ctx.fillStyle = '#ffffff';
