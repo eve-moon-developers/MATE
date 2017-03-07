@@ -9,8 +9,8 @@ function Starfield() {
 	this.canvas = null;
 	this.width = 0;
 	this.width = 0;
-	this.minVelocity = 1;
-	this.maxVelocity = 10;
+	this.minVelocity = 5;
+	this.maxVelocity = 25;
 	this.stars = 0;
 	this.intervalId = 0;
 	this.containerDiv = null;
@@ -18,6 +18,7 @@ function Starfield() {
 	this.fade = 100;
 	this.resetTimeout = null;
 	this.gradient = null;
+	this.counter = 0;
 }
 
 //	The main function - initialises the starfield.
@@ -42,16 +43,6 @@ Starfield.prototype.initialise = function (div) {
 	//Set the gradient
 	var ctx = this.canvas.getContext("2d");
 	var radius = Math.max(this.width, this.height);
-	this.gradient = ctx.createRadialGradient(this.width / 2, this.height, radius, this.width / 2, this.height, 0);
-	this.gradient.addColorStop(0, "#1b2735");
-	this.gradient.addColorStop(1, "#090a0f");
-
-	ctx.fillStyle = this.gradient;
-	ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-
-	this.gradient = ctx.createRadialGradient(this.width / 2, this.height, radius, this.width / 2, this.height, 0);
-	this.gradient.addColorStop(0, "rgba(27, 39, 53, 0.05)");
-	this.gradient.addColorStop(1, "rgba(9, 10, 15, 0.05)");
 };
 
 Starfield.prototype.delayRestart = function () {
@@ -75,10 +66,11 @@ Starfield.prototype.start = function () {
 	var stars = [];
 	for (var i = 0; i < this.stars; i++) {
 		var mod = Math.round(Math.pow(Math.random(), 3) * 5);
-		var width = (Math.random() + 1) * mod;
-		var speed = ((Math.random() * (this.maxVelocity - this.minVelocity)) + this.minVelocity) * mod;
+		var width = (Math.random() + 2) * mod / 2;
+		var speed = ((Math.random() * (this.maxVelocity - this.minVelocity)) + this.minVelocity) * mod / 2;
 
-		stars[i] = new Star(Math.random() * this.width, Math.random() * this.height, width, speed, mod);
+		stars[i] = new Star(Math.random() * this.width, Math.random() * this.height, width, speed, mod,
+			Math.round(Math.random() * 360), 95 - Math.round(Math.random() * Math.random() * 20));
 	}
 	this.stars = stars;
 
@@ -103,7 +95,7 @@ Starfield.prototype.update = function () {
 		var xMod = Math.sin(Math.PI * star.x / this.width) * star.mod + 1;
 		star.x = star.x + star.velocity / xMod * dt;
 
-		var yMod = 5 * Math.sin(Math.PI * (star.x / this.width - 0.5)) / (star.mod + 1)
+		var yMod = (this.width / this.height) * Math.sin(Math.PI * (star.x / this.width - 0.5)) / (star.mod + 1)
 		star.y = star.y + star.velocity * yMod * dt;
 
 		star.sizemod += (Math.random() - 0.5) * star.mod / 10;
@@ -112,14 +104,16 @@ Starfield.prototype.update = function () {
 			star.fade--;
 			if (star.fade <= 0) {
 				var mod = Math.round(Math.pow(Math.random(), 3) * 5);
-				var width = (Math.random() + 1) * mod;
-				var speed = ((Math.random() * (this.maxVelocity - this.minVelocity)) + this.minVelocity) * mod;
+				var width = (Math.random() + 2) * mod / 2;
+				var speed = ((Math.random() * (this.maxVelocity - this.minVelocity)) + this.minVelocity) * mod / 2;
 
 				this.stars[i] = new Star(Math.random() * this.width, Math.random() * this.height, width, speed, mod);
 
 				star = this.stars[i];
 				star.fade = 0;
 				star.reset = false;
+				star.hue = Math.round(Math.random() * 360);
+				star.sat = 95 - Math.round(Math.random() * Math.random() * 20);
 			}
 		} else if (star.fade < 10 * star.mod) {
 			star.fade++;
@@ -155,18 +149,29 @@ Starfield.prototype.draw = function () {
 	var ctx = this.canvas.getContext("2d");
 
 	//	Draw the background.
-	ctx.fillStyle = this.gradient;
-	ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+	if (++this.counter > 5) {
+		ctx.globalAlpha = 0.55;
+		ctx.globalCompositeOperation = 'copy';
+		ctx.drawImage(this.canvas, 0, 0, this.width, this.height, 0, 0, this.width, this.height);
+		this.counter = 0;
+	} else {
+		ctx.globalAlpha = 0.85;
+		ctx.globalCompositeOperation = 'copy';
+		ctx.drawImage(this.canvas, 0, 0, this.width, this.height, 0, 0, this.width, this.height);
+	}
+
 
 	//	Draw stars.
-	ctx.fillStyle = '#ffffff';
+	ctx.globalCompositeOperation = "source-over";
+	ctx.globalAlpha = 1.00;
 	for (var i = 0; i < this.stars.length; i++) {
 		var star = this.stars[i];
+		ctx.fillStyle = "hsl(" + star.hue + ",100%," + star.sat + "%)";
 		ctx.fillRect(star.x, star.y, (star.size + star.sizemod) * (star.fade / (10 * star.mod)), (star.size + star.sizemod) * (star.fade / (10 * star.mod)));
 	}
 };
 
-function Star(x, y, size, velocity, mod) {
+function Star(x, y, size, velocity, mod, hue, sat) {
 	this.x = x;
 	this.y = y;
 	this.size = size;
@@ -174,4 +179,6 @@ function Star(x, y, size, velocity, mod) {
 	this.velocity = velocity;
 	this.mod = mod;
 	this.fade = 10 * mod;
+	this.hue = hue;
+	this.sat = sat;
 }
