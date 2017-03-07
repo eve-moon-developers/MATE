@@ -15,6 +15,9 @@
     overflow: hidden;
     z-index: -5;
 }
+.static-star-container {
+    z-index: -4;
+}
 .static-background {
     z-index: -1; /* Sit on bottom */
     height: 100%; /* Full height */

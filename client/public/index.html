@@ -13,8 +13,6 @@
     <link rel="stylesheet" href="/common/style/bootstrap.darkly.modified.min.css" crossorigin="anonymous" media="screen">
     <!-- Common Style -->
     <link rel="stylesheet" href="/common/style/common.css" crossorigin="anonymous">
-    <!-- Common Style -->
-    <link rel="stylesheet" href="/common/style/stars.css" crossorigin="anonymous">
 
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
@@ -23,12 +21,8 @@
 
 <body>
     <!-- Pretties -->
-    <div id='stars-background'>
-        <div id='stars'></div>
-        <div id='stars2'></div>
-        <div id='stars3'></div>
-    </div>
     <div class="static-background-container">
+        <div id="static-star-container" class="static-star-container"></div>
         <div class="container static-background"></div>
     </div>
     <!-- Navigation -->
@@ -344,6 +338,14 @@
             "/public/src/public_init.js "
         ]
 
+        var myStarfield;
+
+        function StartStarfield() {
+            myStarfield = new Starfield();
+            myStarfield.initialise(document.getElementById("static-star-container"));
+            myStarfield.start();
+        }
+
         function fetch_resource(resource) {
 
         }
@@ -354,6 +356,9 @@
 
         site_init();
     </script>
+
+    <!-- Starfield -->
+    <script src="/common/src/starfield.js" onload="StartStarfield()"></script>
 </body>
 
 </html>
