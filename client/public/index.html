@@ -21,8 +21,10 @@
 
 <body>
     <!-- Pretties -->
-    <div class="static-background-container">
+    <div class="static-background-star-container">
         <div id="static-star-container" class="static-star-container"></div>
+    </div>
+    <div class="static-background-container">
         <div class="container static-background"></div>
     </div>
     <!-- Navigation -->
@@ -344,6 +346,7 @@
             myStarfield = new Starfield();
             myStarfield.initialise(document.getElementById("static-star-container"));
             myStarfield.start();
+            window.addEventListener("resize", function () { myStarfield.delayRestart(); });
         }
 
         function fetch_resource(resource) {
