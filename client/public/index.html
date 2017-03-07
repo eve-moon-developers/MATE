@@ -10,10 +10,11 @@
     <meta name="author" content="W. Craig Jones and EVE MOON Developers">
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://bootswatch.com/darkly/bootstrap.min.css" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="/common/style/bootstrap.darkly.modified.min.css" crossorigin="anonymous" media="screen">
     <!-- Common Style -->
     <link rel="stylesheet" href="/common/style/common.css" crossorigin="anonymous">
+    <!-- Common Style -->
+    <link rel="stylesheet" href="/common/style/stars.css" crossorigin="anonymous">
 
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
@@ -21,9 +22,17 @@
 </head>
 
 <body>
+    <!-- Pretties -->
+    <div id='stars-background'></div>
+    <div id='stars'></div>
+    <div id='stars2'></div>
+    <div id='stars3'></div>
+    <div class="static-background-container">
+        <div class="container static-background"></div>
+    </div>
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top">
-        <div class="container-fluid">
+        <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
@@ -37,6 +46,7 @@
                 <ul class="nav navbar-nav text-fluid">
                     <li><a href="#news">News</a></li>
                     <li><a href="#recruitment">Recruitment</a></li>
+                    <li><a href="#contact">Contact</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Members Area <span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -58,7 +68,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right text-fluid">
                     <li>
-                        <a href="#login"><img class="nav-image" alt="Login with EVE Online" src="/common/image/EVE_SSO_Login_Buttons_Small_White.png"></a>
+                        <a class="nav-image" href="#login"><img alt="Login with EVE Online" src="/common/image/EVE_SSO_Login_Buttons_Small_White.png"></a>
                     </li>
                 </ul>
             </div>
@@ -66,37 +76,199 @@
     </nav>
 
     <!-- Body -->
-    <div style="height:1000px">Content will go here. Duh.</div>
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="container-fluid">
-        <p align="center"><u>For site issues and feedback, please contact Forceful Peacekeeper on Discord, TS3, or in EVE Online.</u></p>
-        <p align="center">Developed in collaboration by W. Craig Jones and the developers of the Eclipse Alliance. Material related to EVE-Online is used with limited permission of CCP Games. No official affiliation or endorsement by CCP Games is stated or implied. The
-            Eclipse Fleet Tracking Tool was created by the EVE Online Alliance "Eclipse" in order to facilitate efficient fleet tracking. All copyrights belong to their respective owners. Further acknowledgements and legal notices can be found <a href="/public/legal.html">here</a>.</p>
-        <p align="center">&copy;2016-2017 Eclipse Alliance All rights reserved.</p>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Eclipse Alliance</h1>
+            <hr>
+            <p>A PVP oriented alliance within the EVE Online universe</p>
+        </div>
 
-      </div>
+        <div class="row row-eq-height">
+            <div class="col-md-8">
+                <div class="panel panel-danger flex-panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">About Us</h3>
+                    </div>
+                    <div class="panel-body flex-grow">
+                        Text about us! <br> Duis rutrum, lacus at finibus varius, libero elit vehicula mi, sit amet porta
+                        tellus nunc in purus. Cras elit nisl, consequat eu condimentum eu, maximus pharetra leo. Nullam ultrices
+                        in libero vehicula varius. Pellentesque nibh ante, facilisis eu porta at, suscipit quis libero. Curabitur
+                        sapien erat, vulputate non metus vitae, varius blandit felis. Vivamus pharetra dignissim interdum.
+                        Fusce convallis laoreet ligula eget dapibus. Aliquam tincidunt eleifend tortor, ut aliquet risus
+                        eleifend eget. Nulla vestibulum ultrices velit nec porta. Duis sagittis porttitor ligula at varius.
+                        Morbi viverra dignissim tristique. Sed ut elit a augue tincidunt placerat. Aenean vestibulum turpis
+                        in quam posuere porttitor.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-warning flex-panel ">
+                    <div class="panel-heading ">
+                        <h3 class="panel-title ">Eclipse is recruiting!</h3>
+                    </div>
+                    <div class="panel-body flex-grow">
+                        <strong>Corporations</strong>
+                        <br>
+                        <strong>Players</strong>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn btn-success fill">Member Registration</button>
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-info fill">Blue Registration</button>
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-warning fill">Applications</button>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-default navbar-static-top ">
+        <div class="container ">
+            <div class="navbar-header navbar-brand ">
+                OP SUCCESS
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row row-eq-height ">
+            <div class="col-md-12 container ">
+                <div class="panel panel-default ">
+                    <div class="panel-heading ">
+                        <h3 class="panel-title ">This section will be replaced with some of our latest kills, fleets, ect.</h3>
+                    </div>
+                    <div class="panel-body ">
+                        <p>Ut volutpat dolor tellus, vitae vestibulum neque porttitor vitae. Fusce tristique urna velit, vitae
+                            tristique ex ullamcorper eu. Etiam justo nunc, condimentum nec nulla vel, auctor facilisis velit.
+                            Nulla aliquam tortor vehicula euismod efficitur. Sed eget mauris rutrum, condimentum risus at,
+                            molestie lectus. Proin sed risus dolor. Etiam lacus magna, condimentum condimentum ligula nec,
+                            cursus laoreet tortor. Donec vel efficitur lacus. Aliquam blandit turpis nunc, ut finibus odio
+                            semper ultrices.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-default navbar-static-top ">
+        <div class="container ">
+            <div class="navbar-header navbar-brand ">
+                NEWS
+            </div>
+        </div>
+    </nav>
+    <div class="container ">
+        <div class="row row-eq-height ">
+            <div class="col-md-6 container ">
+                <div class="panel panel-default flex-panel ">
+                    <div class="panel-heading ">
+                        <h3 class="panel-title ">Rookie Member Initiative</h3>
+                    </div>
+                    <div class="panel-body flex-grow ">
+                        <p>Ut volutpat dolor tellus, vitae vestibulum neque porttitor vitae. Fusce tristique urna velit, vitae
+                            tristique ex ullamcorper eu. Etiam justo nunc, condimentum nec nulla vel, auctor facilisis velit.
+                            Nulla aliquam tortor vehicula euismod efficitur. Sed eget mauris rutrum, condimentum risus at,
+                            molestie lectus. Proin sed risus dolor. Etiam lacus magna, condimentum condimentum ligula nec,
+                            cursus laoreet tortor. Donec vel efficitur lacus. Aliquam blandit turpis nunc, ut finibus odio
+                            semper ultrices.</p>
+                        <p>Ut volutpat dolor tellus, vitae vestibulum neque porttitor vitae. Fusce tristique urna velit, vitae
+                            tristique ex ullamcorper eu. Etiam justo nunc, condimentum nec nulla vel, auctor facilisis velit.
+                            Nulla aliquam tortor vehicula euismod efficitur. Sed eget mauris rutrum, condimentum risus at,
+                            molestie lectus. Proin sed risus dolor. Etiam lacus magna, condimentum condimentum ligula nec,
+                            cursus laoreet tortor. Donec vel efficitur lacus. Aliquam blandit turpis nunc, ut finibus odio
+                            semper ultrices.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 container ">
+                <div class="panel panel-default flex-panel ">
+                    <div class="panel-heading ">
+                        <h3 class="panel-title ">Mining Time</h3>
+                    </div>
+                    <div class="panel-body flex-grow ">
+                        <p>Ut volutpat dolor tellus, vitae vestibulum neque porttitor vitae. Fusce tristique urna velit, vitae
+                            tristique ex ullamcorper eu. Etiam justo nunc, condimentum nec nulla vel, auctor facilisis velit.
+                            Nulla aliquam tortor vehicula euismod efficitur. Sed eget mauris rutrum, condimentum risus at,
+                            molestie lectus. Proin sed risus dolor. Etiam lacus magna, condimentum condimentum ligula nec,
+                            cursus laoreet tortor. Donec vel efficitur lacus. Aliquam blandit turpis nunc, ut finibus odio
+                            semper ultrices.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row row-eq-height ">
+            <div class="col-md-12 container ">
+                <div class="panel panel-default ">
+                    <div class="panel-heading ">
+                        <h3 class="panel-title ">EVE MATE - The custom alliance auth replacement</h3>
+                    </div>
+                    <div class="panel-body ">
+                        <p>Ut volutpat dolor tellus, vitae vestibulum neque porttitor vitae. Fusce tristique urna velit, vitae
+                            tristique ex ullamcorper eu. Etiam justo nunc, condimentum nec nulla vel, auctor facilisis velit.
+                            Nulla aliquam tortor vehicula euismod efficitur. Sed eget mauris rutrum, condimentum risus at,
+                            molestie lectus. Proin sed risus dolor. Etiam lacus magna, condimentum condimentum ligula nec,
+                            cursus laoreet tortor. Donec vel efficitur lacus. Aliquam blandit turpis nunc, ut finibus odio
+                            semper ultrices.</p>
+                        <p>Ut volutpat dolor tellus, vitae vestibulum neque porttitor vitae. Fusce tristique urna velit, vitae
+                            tristique ex ullamcorper eu. Etiam justo nunc, condimentum nec nulla vel, auctor facilisis velit.
+                            Nulla aliquam tortor vehicula euismod efficitur. Sed eget mauris rutrum, condimentum risus at,
+                            molestie lectus. Proin sed risus dolor. Etiam lacus magna, condimentum condimentum ligula nec,
+                            cursus laoreet tortor. Donec vel efficitur lacus. Aliquam blandit turpis nunc, ut finibus odio
+                            semper ultrices.</p>
+                        <p>Ut volutpat dolor tellus, vitae vestibulum neque porttitor vitae. Fusce tristique urna velit, vitae
+                            tristique ex ullamcorper eu. Etiam justo nunc, condimentum nec nulla vel, auctor facilisis velit.
+                            Nulla aliquam tortor vehicula euismod efficitur. Sed eget mauris rutrum, condimentum risus at,
+                            molestie lectus. Proin sed risus dolor. Etiam lacus magna, condimentum condimentum ligula nec,
+                            cursus laoreet tortor. Donec vel efficitur lacus. Aliquam blandit turpis nunc, ut finibus odio
+                            semper ultrices.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="footer container main-footer ">
+        <div class="container ">
+            <p align="center ">
+                <u>For site issues and feedback, please contact Forceful Peacekeeper on Discord, TS3, or in EVE Online.</u>
+            </p>
+            <p align="center ">Developed in collaboration by W. Craig Jones and the developers of the Eclipse Alliance. Material related to
+                EVE-Online is used with limited permission of CCP Games. No official affiliation or endorsement by CCP Games
+                is stated or implied. The Eclipse Fleet Tracking Tool was created by the EVE Online Alliance "Eclipse " in
+                order to facilitate efficient fleet tracking. All copyrights belong to their respective owners. Further acknowledgements
+                and legal notices can be found <a href="/public/legal.html ">here</a>.</p>
+            <p align="center ">&copy;2016-2017 Eclipse Alliance All rights reserved.</p>
+
+        </div>
     </footer>
 
     <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js " integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin=" anonymous "></script>
 
     <!-- Angular -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js "></script>
 
     <!-- Bootstrap -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js " integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa "
+        crossorigin="anonymous "></script>
 
     <!-- Site Init Scripts -->
     <script>
+        var ModuleInitScripts = [
+            "/common/src/site_core.js ",
+            "/public/src/public_init.js "
+        ]
+
         function fetch_resource(resource) {
 
         }
 
         function site_init() {
-            console.log("Site initialized.");
+            console.log("Site initialized. ");
         }
 
         site_init();
