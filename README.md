@@ -26,7 +26,7 @@ Structure Overview
 
 To summerize the technologies used by MATE:
 * Frontend is Bootstrap 4 + AngularJS.
-* Backend is Golang
+* Backend is Golang (httprouter + gorilla handlers)
 * Authentication is EVE ESI and JWTs
 * Data Storage is Redis and Postgresql
 * Client hosting is S3 + Cloudfront
@@ -37,6 +37,7 @@ To summerize the technologies used by MATE:
 1. API Core
 2. API Auth Module
 3. Client Home Page
+* Dev Release
 4. Client Auth Module
 5. Client Member Module
 6. API Member Module
@@ -47,3 +48,20 @@ To summerize the technologies used by MATE:
 10. API Comms Module
 11. Client Comms Module
 * Beta Release
+
+## Simple, Stateless, Restful
+The MATE application is based on 3 principles:
+1. Simple Single page client modules
+    * Simple means a single page is loaded containing everything to start showing information about the server.
+2. Stateless micro-applications on the server
+    * Stateless means instances of the API routing can be quickly scaled up and down based on need using spot instances.
+3. RESTful communication between the two
+    * A standard interface that is well defined, means the client knows what to expect.
+
+### For example:
+* Client
+    * Fleet modules builds site based on API results.
+* Server
+    * Once a fleet is closed, the server calculates fleet-hour contributions.
+* API
+    * The fleet client can pull a list of past fleets using a JWT.
